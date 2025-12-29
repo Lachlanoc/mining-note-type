@@ -1,8 +1,10 @@
-<header style="visibility: hidden"></header>
-
-<main lang="ja" style="width: 100%">
-  <div lang="ja" class="front-vocab field" display-type="kanji">
+<main class="front-container">
+  <div class="front-vocab field" display-type="kanji" id="target-word-content">
     {{Target Word}}
+  </div>
+
+  <div class="front-sentence field" display-type="kanji" id="sentence-content">
+    {{Sentence}}
   </div>
 </main>
 
@@ -714,6 +716,37 @@
         elem.addEventListener("mouseenter", on_activeEnter);
         elem.addEventListener("mouseleave", on_activeLeave);
       }
+    }
+  })();
+</script>
+
+<script>
+  (function() {
+    const targetEl = document.getElementById('target-word-content');
+    const sentEl = document.getElementById('sentence-content');
+    if (!targetEl || !sentEl) return;
+
+    let targetWord = targetEl.innerText.trim();
+    let sentenceHTML = sentEl.innerHTML;
+
+    // Safety: Don't run if already bolded
+    if (sentenceHTML.includes('<b') || sentenceHTML.includes('<strong')) return;
+
+    // STRATEGY 1: Exact Match
+    if (sentenceHTML.includes(targetWord)) {
+       sentEl.innerHTML = sentenceHTML.replace(targetWord, `<b>${targetWord}</b>`);
+       return;
+    }
+
+    // STRATEGY 2: Stem Match (Remove last char if it is Hiragana)
+    // This helps match 'Taberu' to 'Tabemashita'
+    if (targetWord.length > 1) {
+        const stem = targetWord.substring(0, targetWord.length - 1);
+        if (sentenceHTML.includes(stem)) {
+            // We highlight the Stem + matching parts
+            // Note: This is a simple replacement of the first match.
+            sentEl.innerHTML = sentenceHTML.replace(stem, `<b>${stem}</b>`);
+        }
     }
   })();
 </script>
