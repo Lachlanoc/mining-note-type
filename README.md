@@ -36,7 +36,7 @@ In Migaku I have the fields mapped to:
 | Word Audio            | Word Audio                    |
 | Images                | (None)                        |
 | Example Sentences     | Example Sentences             |
-| IsSentenceCard        | (None)                        |
-| IsWordAndSentenceCard | Target Word (Can be anything) |
+| Is VocabularyCard     | (None)                        |
+| Is Audio Card         | (None)                        |
 | Notes                 | Notes                         |
 
