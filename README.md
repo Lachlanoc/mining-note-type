@@ -3,6 +3,8 @@ I care about from [Migaku's](https://github.com/migaku-official/Migaku-Japanese-
 
 E.g.  所\[ところ;h\] still shows the pitch accent and furigana on hover.
 
+Target word highlighting on the frontside sentence only works for the base of the word as Migaku provides a normalised form of verbs in its target word field. It's not ideal but the visibility is still good.
+
 The code was primarily generated with Gemini 3 Pro.
 
 Fields include:
