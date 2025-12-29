@@ -1,4 +1,3 @@
-/* --- LAPIS & MIGAKU HYBRID (Final Ratio Fix) --- */
 :root {
   --bg-color: #fffaf0;
   --fg-color: #333333;
@@ -59,21 +58,32 @@
   display: flex; flex-direction: column;
   width: 100%; max-width: 850px;
   margin: 0 auto;
-  padding-top: 40px; padding-bottom: 50px;
+  /* Lapis Standard Padding */
+  padding-top: 40px; 
+  padding-bottom: 50px;
   box-sizing: border-box;
 }
 
-/* --- FRONT SPECIFIC --- */
 .front-container {
-  display: flex; flex-direction: column;
-  justify-content: flex-start; /* Top align */
-  align-items: center;
-  min-height: 90vh; 
+  display: block; /* Removed Flex centering to allow natural flow */
   text-align: center;
-  margin-top: 15vh; /* Lapis spacing */
+  /* Removed min-height: 90vh */
+  /* Removed margin-top: 15vh */
+  margin-top: 20px; /* Small buffer from the top padding */
 }
-.front-vocab { font-size: var(--vocab-size); margin-bottom: 35px; display: block; }
-.front-sentence { font-size: var(--sentence-size); display: block; opacity: 0.9; line-height: 1.4; padding: 0 15px; }
+
+.front-vocab { 
+  font-size: var(--vocab-size); 
+  margin-bottom: 35px; 
+  display: block; 
+}
+.front-sentence { 
+  font-size: var(--sentence-size); 
+  display: block; 
+  opacity: 0.9; 
+  line-height: 1.4; 
+  padding: 0 15px; 
+}
 
 /* --- BACK SPECIFIC (HEADER) --- */
 .def-header {
@@ -87,7 +97,7 @@
 .dh-left {
   background: var(--bg-elevated);
   padding: 0.52em; border-radius: 5px;
-  flex: 1; /* Grow to fill space */
+  flex: 1; /* Default: Grow */
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center;
@@ -99,15 +109,15 @@
   position: relative; font-size: 0; 
 }
 
-/* --- MOBILE HEADER RATIO (Ported from newnote.zip) --- */
-/* If an image exists (.dh-right), force text to 60% and image to 40% */
+/* --- MOBILE HEADER RATIO --- */
+/* If image exists, force specific VW widths */
 .mobile .dh-left:has(~ .dh-right), .android .dh-left:has(~ .dh-right) {
-  flex: 0 0 60%;
-  max-width: 60%;
+  max-width: 60vw !important;
+  flex: 0 0 60% !important;
 }
 .mobile .dh-right, .android .dh-right {
-  flex: 0 0 40%;
-  max-width: 40%;
+  max-width: 40vw !important;
+  flex: 0 0 40% !important;
 }
 
 /* Mobile: Invisible Box for Text */
@@ -216,7 +226,7 @@ b, strong { color: var(--highlight); }
 
 /* --- IMAGE MODAL --- */
 .image img { 
-  max-height: 400px; /* Restored size */
+  max-height: 400px; 
   max-width: 100%; 
   border-radius: 5px; cursor: pointer; 
 }
